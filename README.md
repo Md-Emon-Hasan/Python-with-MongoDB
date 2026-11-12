@@ -1,212 +1,96 @@
-# Welcome to the **MongoDB Tutorial** Repository
+# Python with MongoDB
 
-This repository contains resources and examples for working with MongoDB, a NoSQL database known for its flexibility and scalability. It provides a practical guide to setting up and using MongoDB for various applications, including CRUD operations and advanced querying.
+Practical Jupyter Notebook examples for connecting Python to MongoDB and working with document data using [PyMongo](https://pymongo.readthedocs.io/).
 
-## 📋 Contents
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![PyMongo](https://img.shields.io/badge/Driver-PyMongo-13AA52)](https://pymongo.readthedocs.io/)
+[![Jupyter](https://img.shields.io/badge/Notebooks-Jupyter-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-- [Introduction](#introduction)
-- [Topics Covered](#topics-covered)
-- [Getting Started](#getting-started)
-- [Best Practices](#best-practices)
-- [FAQ](#faq)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Additional Resources](#additional-resources)
-- [Challenges Faced](#challenges-faced)
-- [Lessons Learned](#lessons-learned)
-- [Why I Created This Repository](#why-i-created-this-repository)
-- [License](#license)
-- [Contact](#contact)
+## Overview
 
----
+This repository is a hands-on learning resource for developers who want to use MongoDB from Python. It is organized as four notebooks, moving from a local database connection to querying, updating, and aggregating documents.
 
-## 📖 Introduction
+## Contents
 
-This repository provides a comprehensive introduction to MongoDB, including setup instructions, basic and advanced features, and example projects. It is ideal for those looking to learn MongoDB from scratch or enhance their existing skills.
+| Notebook | What you will learn |
+| --- | --- |
+| [Connect Python With MongoDB](3%20Connect%20Python%20With%20MongoDb/Connect%20Python%20With%20MongoDb.ipynb) | Connect with `MongoClient`, select a database and collection, and insert documents. |
+| [Querying JSON Documents](4%20MongoDb%20With%20Python-%20Querying%20Json%20Documents/MongoDb%20With%20Python-%20Querying%20Json%20Documents.ipynb) | Read documents and filter with equality, comparison, `$in`, `$and`, and `$or` queries. |
+| [Updating Records](5%20MongoDb%20With%20Python-%20Updating%20Records/MongoDb%20With%20Python-%20Updating%20Records.ipynb) | Practice `update_one`, `update_many`, and `replace_one`. |
+| [Aggregate Functions](6%20MongoDb%20With%20Python-%20Aggregate%20Functions/MongoDb%20With%20Python-%20Aggregate%20Functions.ipynb) | Group documents and calculate counts, sums, averages, and projected fields. |
 
----
+## Prerequisites
 
-## 🔍 Topics Covered
+- Python 3.9 or newer
+- A MongoDB deployment: a local MongoDB server or a MongoDB Atlas cluster
+- Jupyter Notebook or JupyterLab
 
-- **MongoDB Basics:** Introduction to MongoDB, including its architecture and key concepts.
-- **Installation:** How to install MongoDB on various operating systems.
-- **CRUD Operations:** Basic operations for creating, reading, updating, and deleting documents.
-- **Advanced Querying:** Techniques for advanced querying and indexing.
-- **Aggregation Framework:** Using MongoDB’s aggregation framework for data analysis.
-- **Data Modeling:** Best practices for designing MongoDB schemas.
+## Get started
 
----
-
-## 🚀 Getting Started
-
-To get started with this project, follow these steps:
-
-1. **Clone the repository:**
+1. Clone the repository and enter its directory:
 
    ```bash
    git clone https://github.com/Md-Emon-Hasan/MongoDB.git
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```bash
    cd MongoDB
    ```
 
-3. **Set up MongoDB:**
-
-   Follow the [MongoDB Installation Guide](https://docs.mongodb.com/manual/installation/) for detailed instructions on installing MongoDB.
-
-4. **Install necessary dependencies:** (If applicable)
+2. (Optional) Create and activate a virtual environment:
 
    ```bash
-   pip install -r requirements.txt  # Adjust if using Python for example scripts
+   python -m venv .venv
    ```
 
-5. **Run MongoDB:**
+   On Windows PowerShell, activate it with `.\.venv\Scripts\Activate.ps1`. On macOS or Linux, use `source .venv/bin/activate`.
 
-   Start the MongoDB server:
+3. Install the notebook and MongoDB driver dependencies:
 
    ```bash
-   mongod
+   python -m pip install pymongo notebook
    ```
 
-6. **Access MongoDB shell:** (If needed)
+4. Start your local MongoDB server, or prepare a MongoDB Atlas connection string.
+
+5. Launch Jupyter from the repository root:
 
    ```bash
-   mongo
+   jupyter notebook
    ```
 
-7. **Explore the example scripts:** 
+6. Open a notebook from the table above and run its cells in order.
 
-   Navigate to the `examples` folder and run the example scripts to see MongoDB in action.
+## Configure the MongoDB connection
 
----
+The examples currently connect to MongoDB on the local machine:
 
-## 🌟 Best Practices
+```python
+from pymongo import MongoClient
 
-Recommendations for using and maintaining MongoDB:
+client = MongoClient("mongodb://127.0.0.1:27017/")
+```
 
-- **Schema Design:** Design your schemas according to the needs of your application and access patterns.
-- **Indexing:** Use indexing to improve query performance.
-- **Data Validation:** Implement data validation rules to ensure data integrity.
-- **Backup and Recovery:** Regularly back up your data and be prepared for recovery scenarios.
-- **Security:** Follow MongoDB security best practices, including authentication and authorization.
+For MongoDB Atlas or another deployment, replace the URI with your deployment's connection string. Keep credentials out of notebooks committed to GitHub; load secrets from environment variables instead. The notebooks write sample documents to the database, so use a development database when experimenting.
 
----
+## Notes
 
-## ❓ FAQ
+- The notebooks are independent examples and may create or modify database records when cells are run. Re-running insert cells can add duplicate sample documents.
+- Database and collection names are selected in the notebook code. Update them if you want to use a different database.
+- This repository is an educational walkthrough, not a packaged Python application; there is no `requirements.txt` at this time.
 
-**Q: What is MongoDB?**
-A: MongoDB is a NoSQL database that uses a flexible, document-oriented data model to store data in JSON-like format.
+## Contributing
 
-**Q: How do I install MongoDB?**
-A: Follow the [MongoDB Installation Guide](https://docs.mongodb.com/manual/installation/) for instructions on installing MongoDB on your operating system.
+Suggestions, fixes, and additional examples are welcome. Open an issue to discuss a change, or submit a pull request with a clear description of the update.
 
-**Q: Can I use MongoDB with other programming languages?**
-A: Yes, MongoDB supports various programming languages through official drivers and libraries.
+## License
 
-**Q: Where can I learn more about MongoDB?**
-A: Visit the [MongoDB Official Documentation](https://docs.mongodb.com/) for comprehensive guides and tutorials.
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
----
+## Connect with me
 
-## 🛠️ Troubleshooting
-
-Common issues and their solutions:
-
-- **Issue: MongoDB Server Not Starting**
-  *Solution:* Check the MongoDB logs for errors and ensure that no other processes are using the default MongoDB port (27017).
-
-- **Issue: Authentication Errors**
-  *Solution:* Verify that your authentication credentials are correct and that you have the necessary permissions.
-
-- **Issue: Connection Issues**
-  *Solution:* Ensure that the MongoDB server is running and that your application is configured to connect to the correct host and port.
-
----
-
-## 🤝 Contributing
-
-Contributions to this project are welcome! Here's how you can contribute:
-
-1. **Fork the repository.**
-2. **Create a new branch:**
-
-   ```bash
-   git checkout -b feature/new-feature
-   ```
-
-3. **Make your changes:**
-
-   - Add new features, fix bugs, or improve documentation.
-
-4. **Commit your changes:**
-
-   ```bash
-   git commit -am 'Add a new feature or update'
-   ```
-
-5. **Push to the branch:**
-
-   ```bash
-   git push origin feature/new-feature
-   ```
-
-6. **Submit a pull request.**
-
----
-
-## 📚 Additional Resources
-
-Here are some resources to help you learn more about MongoDB and database management:
-
-- **MongoDB Official Documentation:** [docs.mongodb.com](https://docs.mongodb.com/)
-- **MongoDB University:** [university.mongodb.com](https://university.mongodb.com/)
-- **The MongoDB Blog:** [mongodb.com/blog](https://www.mongodb.com/blog)
-
----
-
-## 💪 Challenges Faced
-
-Some challenges encountered during the development of this project include:
-
-- Understanding MongoDB’s unique features compared to traditional SQL databases.
-- Implementing advanced querying and aggregation techniques.
-- Managing large datasets and optimizing performance.
-
----
-
-## 📚 Lessons Learned
-
-Key lessons learned from this project:
-
-- Key concepts of MongoDB and its document-oriented data model.
-- Best practices for schema design and data management.
-- Advanced querying techniques and their applications.
-
----
-
-## 🌟 Why I Created This Repository
-
-This repository was created to provide a practical guide for learning and working with MongoDB. It aims to simplify the process of getting started with MongoDB and offer valuable examples for developers looking to use this powerful NoSQL database.
-
----
-
-## 📝 License
-
-This repository is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
-
----
-
-## 📬 Contact
-
-- **Email:** [iconicemon01@gmail.com](mailto:iconicemon01@gmail.com)
-- **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)
-- **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)
-- **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan)
-- **Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
-
----
-
-Feel free to adjust and expand this template according to your project’s specifics and requirements.
+- 🌐 **Portfolio:** [emonlabs-ai.hitechparks.com](https://emonlabs-ai.hitechparks.com)
+- 💻 **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)
+- 💼 **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)
+- 🤗 **Hugging Face:** [emonHasan01](https://huggingface.co/emonHasan01)
+- 📧 **Email:** [emon.mlengineer@gmail.com](mailto:emon.mlengineer@gmail.com)
+- 📱 **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)
